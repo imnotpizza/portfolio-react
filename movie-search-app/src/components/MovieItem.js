@@ -1,22 +1,25 @@
 import React, { Fragment, useState } from "react";
 import {Card, Button} from 'react-bootstrap';
 import Rating from "@material-ui/lab/Rating";
+import MovieDetail from './MovieDetail';
 
+/**
+ * 
+ * @param {
+ * 
+ * 영화 리스트 아이템 담당 컴포넌트
+ */
 const MovieItem=({movieItem})=>{
 
-    const [visible, setVisible] = useState(false);
 
-
-     //소수점 1재짜리 반올림 / 2 
-     const getRating=(rating)=>{
-         return Math.ceil(rating)/2;
-       }
-        const clickItem = () => {
-         setVisible(!visible);
-       }
+    //평점 계산 후 반환 - 소수점 1재짜리 반올림 / 2 
+    const getRating=(rating)=>{
+        return Math.ceil(rating)/2;
+    }
+    
 
     return (
-       
+        <>
         <Card style={{ width: '18rem' }}>
             <Card.Img 
             variant="top" 
@@ -29,12 +32,19 @@ const MovieItem=({movieItem})=>{
                 <Rating
                   name="read-only"
                   value={getRating(movieItem.userRating)}
+                 
                   readOnly
                   />
                
-                <Button variant="primary">정보 더보기</Button>
+                <MovieDetail
+                movieItem={movieItem}
+                ></MovieDetail>
             </Card.Body>
       </Card>
+
+       
+
+        </>
   
     )
 

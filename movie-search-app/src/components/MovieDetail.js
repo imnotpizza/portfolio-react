@@ -1,6 +1,14 @@
 import React, {useState, useEffect} from "react";
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { Image, Row, Col } from 'react-bootstrap'
+import Rating from "@material-ui/lab/Rating";
 
+/**
+ * 
+ * @param {
+ * 영화 상세보기 담당 컴포넌트
+ * } param0 
+ */
 const MovieDetail=({movieItem})=>{
 
     const [modal, setModal]=useState(false);
@@ -8,6 +16,7 @@ const MovieDetail=({movieItem})=>{
     //평점 계산
     const getRating = rating => {
         return Math.ceil(rating) / 2;
+
     };
 
     //배우 목록 반환
@@ -29,17 +38,37 @@ const MovieDetail=({movieItem})=>{
 
     return(
         <div>
-        <Button color="danger" onClick={openModal}>팝업창임</Button>
-        <Modal isOpen={modal}>
-          <ModalHeader >Modal title</ModalHeader>
+        <Button color="danger" onClick={openModal}>상세보기</Button>
+        <Modal isOpen={modal} size="lg">
+            
           <ModalBody>
-            <h1>Title</h1>
-            <h3>제목 : {movieItem.title}</h3>
-            <img src={movieItem.image} alt="img"></img>
-            <h5>평점 : {movieItem.userRating}</h5>
-            <h5>개봉년도 : {movieItem.userRating}</h5>
-            <h5>감독 : {movieItem.userRating}</h5>
-            <h5>배우 : {movieItem.userRating}</h5>
+            <Row>
+                <h3>{movieItem.title}</h3>
+            </Row>
+            <Row>
+                <Col xs={6}>
+                <Image src={movieItem.image} width="200" rounded></Image>
+                </Col>
+                <Col xs={6}>
+                    <Rating
+                    name="read-only"
+                    value={getRating(movieItem.userRating)}
+                    readOnly
+                    />
+                    <h5>평점 : {movieItem.userRating}</h5>
+                    <h5>개봉년도 : {movieItem.pubDate}</h5>
+                    <h5>평점 : {getActorsList(movieItem.director)}</h5>
+                    <h5>배우 : {getActorsList(movieItem.actor)}</h5>
+                    <Button
+                    variant="success"
+                    onClick={()=>{window.open(movieItem.link)}}
+                    >네이버 영화로 이동</Button>
+                </Col>
+            </Row>
+
+            
+           
+           
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={closeModal}>확인</Button>

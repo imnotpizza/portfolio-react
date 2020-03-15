@@ -11,16 +11,24 @@ const MovieSearch=()=>{
       );
 
     //api 통해 데이터 가져온 뒤 state 에 저장
-    const onClick = useCallback(async e => {
+    const onClickSearchBtn = useCallback(async e => {
+        console.log(query)
         const response = await fetch_movielist(query); //객체 넣어야 함
+
+        console.log(response)
     });
 
     return(
-        <Navbar className="bg-light justify-content-between">
+        <Navbar className="bg-dark justify-content-between">
       
             <Form inline>
-                <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
-                <Button type="submit">Submit</Button>
+                <FormControl
+                 type="text" 
+                 placeholder="찾을 영화 제목을 검색하세요" 
+                 className=" mr-sm-2" 
+                 onChange={onChange}
+                 />
+                <Button onClick={onClickSearchBtn}>검색하기</Button>
             </Form>
         </Navbar>
     )

@@ -4,8 +4,8 @@ import MovieItem from './MovieItem';
 import MovieDetail from './MovieDetail';
 import {Grid, Row, Col} from 'reactstrap';
 
-const MovieList=()=>{
-    const [items, setItems]=useState(tempItems);//state 로 적용해야 함
+const MovieList=({items})=>{
+    //const [items, setItems]=useState(tempItems);//state 로 적용해야 함
     const [visible, setVisible] = useState(false);
 
     const openModal = (e) => {
@@ -20,18 +20,27 @@ const MovieList=()=>{
 
     //아이템리스트 반환
     const getItemList=()=>{
-        
-        return items.map((item, id)=>{
+
+
+        if(items.length===0){
+          return(
+            <h1>결과가 없습니다</h1>
+          )
+        }else{
+
+          
+          return items.map((item, id)=>{
             return(
-            
-                <Col sm={6} md={4} key={id}>
+              
+              <Col sm={6} md={4} key={id}>
                     <MovieItem
                     movieItem={item}
                     ></MovieItem>
                 </Col>
                
-            )
-        })
+               )
+              })
+          }
         
     }
       
@@ -40,9 +49,7 @@ const MovieList=()=>{
               <Row className="show-grid" >
                 {getItemList()}
               </Row>
-              <MovieDetail
-              movieItem={items[0]}
-              ></MovieDetail>
+            
           </div>
       )
 }
