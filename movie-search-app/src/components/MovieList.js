@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { tempItems } from "../constants";
 import MovieItem from './MovieItem';
 import MovieDetail from './MovieDetail';
+import NoResults from './NoResults';
 import {Grid, Row, Col} from 'reactstrap';
+
 
 const MovieList=({items})=>{
     //const [items, setItems]=useState(tempItems);//state 로 적용해야 함
@@ -24,7 +26,7 @@ const MovieList=({items})=>{
 
         if(items.length===0){
           return(
-            <h1>결과가 없습니다</h1>
+            <NoResults></NoResults>
           )
         }else{
 

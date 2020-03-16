@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap");
+
 .App {
   text-align: center;
 }
@@ -26,6 +28,33 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.no-results {
+  
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 500px;
+  padding-right: 500px;
+  margin-top: 200px;
+  text-align: center;
+  
+  border-style: hidden;
+  border-radius: 20px;
+  background-color:burlywood;
+}
+
+.no-results-text {
+  font-family:'Nanum Gothic';
+  font-weight: bolder;
+  color: brown;
+  margin-bottom: 35px;
+}
+
+.no-results-text-small {
+  font-family:'Nanum Gothic';
+  font-weight: bolder;
 }
 
 @keyframes App-logo-spin {
