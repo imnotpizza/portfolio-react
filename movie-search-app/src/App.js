@@ -1,8 +1,10 @@
 import React, {useRef, useState, useCallback} from 'react';
 import MovieList from './components/MovieList';
 import MovieSearch from './components/MovieSearch';
+import SassStudy from './components/SassStudy';
 import { fetch_movielist } from './apis/list'
 import {Navbar, Nav, Form, InputGroup, FormControl, Button} from 'react-bootstrap';
+import './scss/style.scss';
 
 const App=()=>{
 
@@ -28,7 +30,10 @@ const App=()=>{
   return (
     <>
 
-      <Navbar bg="dark" variant="dark">
+      <SassStudy>
+
+      </SassStudy>
+      {/* <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
@@ -58,7 +63,9 @@ const App=()=>{
       <br></br>
       <MovieList
       items={movieItems}
-      ></MovieList>
+      ></MovieList> */}
+
+
      
     </>
   )

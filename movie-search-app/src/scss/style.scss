@@ -1,0 +1,81 @@
+
+$bg-color:blue;
+$color-yellow: rgba(255, 255, 255, 0.537);
+
+.MyComponent {
+    background: yellow;
+    color: black;
+    padding: 1rem;
+    .header01 {
+    background: white;
+    color: black;
+    font-size: 3rem;
+    text-align: center;
+    padding: 1rem;
+    }
+    }
+    
+
+.box1{
+    font-size: 40px;
+    background-color: #ffcccc;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+    //box-shadow : 그림자 효과
+    //x y blur spread  : x:그림자 오른쪽으로 이동, y: 그림자 아래로 이동, blur : blur강도, spred : 그림자 퍼지는 정도
+    //inset : 그림자를 요소의 안쪽에 만듬
+    //initial : 기본값으로 설정
+    //inherit : 부모 요소의 속성값 상속받음
+    //none : 그림자 효과 제거
+    box-shadow: 4px 4px 5px 0px;
+    padding: 15px;
+    margin: 40px;
+
+    //nesting : 부모 태그의 속성을 물려뱓은 새 태그 정의
+    &>.inner2{
+       font-style: italic; 
+       
+    }
+
+    .box1-inner{
+        font-size: 20px;
+        background-color: white;
+        border-radius: 10px;
+        margin-left: 20px; 
+        margin-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 3px solid black;
+        padding: 15px
+    
+    }
+
+}
+
+.box1:hover{
+    background-color: white;
+}
+.box2{
+    background-color: blueviolet;
+    //inline : 줄바꿈 없이 한줄에 배치, width, height속성 무시됨
+    //block : 줄바꿈 적용
+    //inline-block : inline과 동일하나 width, height 지정가능
+    display: inline-block;
+    margin: 10px 0;
+}
+.box3{
+    background: $bg-color;
+    width: 100px;
+    height: 20px;
+}
+.box4{
+    background: $bg-color;
+    width: 100px;
+    height: 20px;
+}
+.box5{
+    background: $bg-color;
+    width: 100px;
+    height: 20px;
+}
+

@@ -2,7 +2,7 @@ export const X_NAVER_CLIENT_ID = "n0_0KcWBhI6j6VZH62xB";
 
 export const X_NAVER_CLIENT_SECRET = "aaTUtodscb";
 
-export const BASEURL = "http://localhost:3000/api"
+export const BASE_URL = "http://localhost:3000/api"
 
 export const tempItems = [
            {
