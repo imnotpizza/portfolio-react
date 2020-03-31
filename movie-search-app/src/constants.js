@@ -1,8 +1,15 @@
-export const X_NAVER_CLIENT_ID = "n0_0KcWBhI6j6VZH62xB";
 
-export const X_NAVER_CLIENT_SECRET = "aaTUtodscb";
+//export const BASE_URL = "http://localhost:3000/api";
+export const BASE_URL="http://ec2-13-209-66-146.ap-northeast-2.compute.amazonaws.com:3000/api";
 
-export const BASE_URL = "http://localhost:3000/api"
+export const DESCRIPTION=[
+  "해당 프로젝트 기능",
+  "- NAVER 영화검색 API를 활용한 영화 정보 검색 기능",
+  "기술스택",
+  "프로젝트 : React.js, SASS, Nodejs(api server)",
+  "배포 : AWS S3, AWS EC2(api server)",
+  "버전관리 : Github",
+]
 
 export const tempItems = [
            {

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import { Image, Row, Col } from 'react-bootstrap'
 import Rating from "@material-ui/lab/Rating";
+import ReactHtmlParser from 'react-html-parser';
+import '../scss/style.scss';
 
 /**
  * 
@@ -11,67 +13,87 @@ import Rating from "@material-ui/lab/Rating";
  */
 const MovieDetail=({movieItem})=>{
 
-    const [modal, setModal]=useState(false);
+    const [isOpen, setIsOpen]=useState(false);
 
     //평점 계산
     const getRating = rating => {
-        return Math.ceil(rating) / 2;
+        return rating/2;
 
     };
 
     //배우 목록 반환
     const getActorsList=(text)=>{
-        let _arr=text.split('|');
-        _arr.pop();
-        
-        return _arr.join(', ');
+        if(!text){
+            return '등록 안됨'
+        }else{
+
+            let _arr=text.split('|');
+            _arr.pop();
+            
+            return _arr.join(', ');
+        }
     };
 
     const openModal=()=>{
-        setModal(true);
+        setIsOpen(true);
     };
 
     const closeModal=()=>{
-        setModal(false);
+        setIsOpen(false);
     };
+
+    useEffect(()=>{
+       
+    })
 
 
     return(
         <div>
-        <Button color="danger" onClick={openModal}>상세보기</Button>
-        <Modal isOpen={modal} size="lg">
+        <Button color="primary" onClick={openModal}>상세보기</Button>
+        <Modal isOpen={isOpen} size="lg">
             
           <ModalBody>
-            <Row>
-                <h3>{movieItem.title}</h3>
-            </Row>
-            <Row>
-                <Col xs={6}>
-                <Image src={movieItem.image} width="200" rounded></Image>
-                </Col>
-                <Col xs={6}>
-                    <Rating
-                    name="read-only"
-                    value={getRating(movieItem.userRating)}
-                    readOnly
-                    />
-                    <h5>평점 : {movieItem.userRating}</h5>
-                    <h5>개봉년도 : {movieItem.pubDate}</h5>
-                    <h5>평점 : {getActorsList(movieItem.director)}</h5>
-                    <h5>배우 : {getActorsList(movieItem.actor)}</h5>
-                    <Button
-                    variant="success"
-                    onClick={()=>{window.open(movieItem.link)}}
-                    >네이버 영화로 이동</Button>
-                </Col>
-            </Row>
-
+            <div className="detail-title">
+                <h3 >{ReactHtmlParser(movieItem.title)}</h3>
+            </div>
             
-           
-           
+            <Row>
+                <Col xs={6}>
+                    <Image src={movieItem.image} width="200" rounded></Image>
+                </Col>
+                <Col xs={6}>
+                    
+                    <div className="detail-text">
+
+                        <p className="detail-rating">
+                        <Rating
+                        name="read-only"
+                        value={movieItem.userRating/2}
+                        precision={0.5}
+                        readOnly
+                        />
+                        {movieItem.userRating/2}
+                    
+                        </p> 
+                       
+                        <p>개봉년도 : {movieItem.pubDate}</p>
+                        <p>감독 : {getActorsList(movieItem.director)}</p>
+                        <p>배우 : {getActorsList(movieItem.actor)}</p>
+                    </div>
+                    
+                  
+                </Col>
+            </Row>
+          
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={closeModal}>확인</Button>
+
+            <Button
+            onClick={()=>{window.open(movieItem.link)}}
+            >네이버 영화로 이동</Button>
+
+            <Button color="danger" onClick={closeModal}>닫기</Button>
+
           </ModalFooter>
         </Modal>
       </div>

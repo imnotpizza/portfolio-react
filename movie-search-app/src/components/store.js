@@ -19,8 +19,6 @@ const store=createStore(reducer, {
 
 });
 
-console.log(store.getState());
-
 //action : 상태를 변경하는 행위를 구현
 const changeCompA=(data)=>{
     return {
