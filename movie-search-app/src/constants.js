@@ -1,6 +1,6 @@
 
-//export const BASE_URL = "http://localhost:3000/api";
-export const BASE_URL="http://ec2-13-209-66-146.ap-northeast-2.compute.amazonaws.com:3000/api";
+export const BASE_URL = "http://localhost:3000/api";
+//export const BASE_URL="http://ec2-13-209-66-146.ap-northeast-2.compute.amazonaws.com:3000/api";
 
 export const DESCRIPTION=[
   "해당 프로젝트 기능",
@@ -11,8 +11,96 @@ export const DESCRIPTION=[
   "버전관리 : Github",
 ]
 
+export const tempItems2=[
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+  {
+      abs :  'In this lesson, students investigate the economic ramifications of the current pandemic.',
+      title :  'Lesson of the Day: ‘Coronavirus Cost to Businesses and Workers: “It Has All Gone to Hell”',
+      pubdate:  '2020-03-16T08:00:02+0000',
+      img: 'https://www.nytimes.com/images/2020/04/03/us/politics/03dc-fisa/merlin_169065741_4e45523c-2928-4859-af0e-1b6d41132c38-articleLarge.jpg',
+      url:  'https://www.nytimes.com/2020/03/16/learning/lesson-of-the-day-coronavirus-cost-to-businesses-and-workers-it-has-all-gone-to-hell.html',
+  },
+]
+
 export const tempItems = [
            {
+             id: 123684,
              title: "<b>아이언맨</b>",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=123684",
              image:
@@ -21,9 +109,11 @@ export const tempItems = [
              pubDate: "2014",
              director: "김용수|",
              actor: "이동욱|신세경|김갑수|",
-             userRating: "4.94"
+             userRating: "4.94",
+             scraped: false,
            },
            {
+             id: 133519,
              title: "<b>아이언맨</b> &amp; 캡틴 아메리카",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=133519",
              image:
@@ -32,9 +122,11 @@ export const tempItems = [
              pubDate: "2014",
              director: "",
              actor: "아드리안 패스더|로저 크레이그 스미스|",
-             userRating: "9.00"
+             userRating: "9.00",
+             scraped: false,
            },
            {
+             id: 70254,
              title: "<b>아이언맨</b> 3",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=70254",
              image:
@@ -44,9 +136,11 @@ export const tempItems = [
              director: "셰인 블랙|",
              actor:
                "로버트 다우니 주니어|기네스 팰트로|벤 킹슬리|돈 치들|가이 피어스|레베카 홀|",
-             userRating: "8.86"
+             userRating: "8.86",
+             scraped: false,
            },
            {
+            id: 106595,
              title: "<b>아이언 맨</b>: 라이즈 오브 테크노보어",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=106595",
              image:
@@ -55,9 +149,11 @@ export const tempItems = [
              pubDate: "2013",
              director: "하마사키 히로시|",
              actor: "후지와라 케이지|이리노 미유|",
-             userRating: "3.28"
+             userRating: "3.28",
+             scraped: false,
            },
            {
+            id: 133520,
              title: "<b>아이언맨</b> &amp; 헐크",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=133520",
              image:
@@ -66,9 +162,11 @@ export const tempItems = [
              pubDate: "2013",
              director: "에릭 라돔스키|레오 릴리|",
              actor: "아드리안 패스더|프레드 타타시오르|",
-             userRating: "4.00"
+             userRating: "4.00",
+             scraped: false,
            },
            {
+            id: 49008,
              title: "<b>아이언맨</b> 2",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=49008",
              image:
@@ -78,9 +176,11 @@ export const tempItems = [
              director: "존 파브로|",
              actor:
                "로버트 다우니 주니어|기네스 팰트로|돈 치들|스칼렛 요한슨|미키 루크|",
-             userRating: "7.36"
+             userRating: "7.36",
+             scraped: false,
            },
            {
+            id: 44885,
              title: "<b>아이언맨</b>",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=44885",
              image:
@@ -90,9 +190,11 @@ export const tempItems = [
              director: "존 파브로|",
              actor:
                "로버트 다우니 주니어|테렌스 하워드|제프 브리지스|기네스 팰트로|",
-             userRating: "8.91"
+             userRating: "8.91",
+             scraped: false,
            },
            {
+            id: 66121,
              title: "인빈서블 <b>아이언 맨</b>",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=66121",
              image:
@@ -101,9 +203,11 @@ export const tempItems = [
              pubDate: "2007",
              director: "프랭크 포어|",
              actor: "마크 워든|구엔돌린 예오|",
-             userRating: "7.24"
+             userRating: "7.24",
+             scraped: false,
            },
            {
+            id: 74459,
              title: "특수공작원 <b>아이언맨</b> - 시리즈",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=74459",
              image:
@@ -114,9 +218,11 @@ export const tempItems = [
                "필 본델리|리처드 A. 콜라|피터 크레인|돈 칼로스 듀너웨이|월터 그루먼|존 D. 핸콕|제프리 헤이든|시드니 헤이어스|크리스토퍼 히블러|브루스 케슬러|가이 마거|버나드 맥이비티|아서 알랜 세이들먼|마이클 베자|돈 웨이스|",
              actor:
                "제니퍼 오닐|리차드 앤더슨|미켈티 윌리암슨|이레나 페리스|데이너 스파크스|잉그리드 앤더슨|데보라 러드윅 데이비스|존 에릭 히섬|",
-             userRating: "7.63"
+             userRating: "7.63",
+             scraped: false,
            },
            {
+            id: 74460,
              title: "특수공작원 <b>아이언맨</b>",
              link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=74460",
              image: "",
@@ -125,7 +231,8 @@ export const tempItems = [
              director: "피터 크레인|",
              actor:
                "리차드 앤더슨|피터 브라운|메리 크로스비|캔디스 댈리|패트릭 고먼|존 에릭 히섬|",
-             userRating: "9.00"
+             userRating: "9.00",
+             scraped: false,
            }
          ]
       

@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.0.0-alpha.6",
+    "immutable": "^4.0.0-rc.12",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "node-sass": "^4.13.1",
@@ -19,6 +20,7 @@
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0",
     "react-html-parser": "^2.0.2",
+    "react-infinite-scroller": "^1.2.4",
     "react-scripts": "3.4.0",
     "reactstrap": "^8.4.1",
     "redux": "^4.0.5"

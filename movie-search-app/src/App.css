@@ -57,6 +57,17 @@
   font-weight: bolder;
 }
 
+.selected{
+  font-weight: bolder;
+  color: tomato;
+
+}
+
+.text:hover{
+  font-weight: bolder;
+  color: red;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

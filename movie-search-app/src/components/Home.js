@@ -12,8 +12,8 @@ import '../scss/style.scss';
 
 
 
-const HomeView=()=>{
-    const [listActivated, setListActivated]=useState(false);//welcome문구 표시 플래그
+const Home=()=>{
+    const [listActivated, setListActivated]=useState(true);//welcome문구 표시 플래그
     const [isLoading, setIsLoading]=useState(false);//로딩중 여부 플래그
     const [query, setQuery] = useState("");
     const [movieItems, setMovieItems]=useState([]);
@@ -153,4 +153,4 @@ const Description=()=>{
 }
 
 
-export default HomeView;
+export default Home;

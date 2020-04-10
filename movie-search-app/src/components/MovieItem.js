@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import {Card, Button} from 'react-bootstrap';
 import Rating from "@material-ui/lab/Rating";
 import MovieDetail from './MovieDetail';
@@ -11,7 +11,7 @@ import '../scss/style.scss';
  * 
  * 영화 리스트 아이템 담당 컴포넌트
  */
-const MovieItem=({movieItem})=>{
+const MovieItem=({movieItem, id})=>{
 
 
     //평점 계산 후 반환 - 소수점 1재짜리 반올림 / 2 
@@ -19,6 +19,14 @@ const MovieItem=({movieItem})=>{
         
         return rating/2;
     }
+
+    const scrapMovie=useCallback((e)=>{
+        e.preventDefault();
+
+        scrapMovie.scraped=!scrapMovie.scraped;
+        
+        //api post
+    },[])
     
 
     return (
@@ -42,7 +50,12 @@ const MovieItem=({movieItem})=>{
                     precision={0.5}
                     readOnly
                     />
-                
+                    
+                    <button 
+                    onClick={scrapMovie}>
+                    {movieItem.scraped ? '스크랩 취소' : '스크랩'}
+                    </button>
+
                     <MovieDetail
                     movieItem={movieItem}
                     ></MovieDetail>

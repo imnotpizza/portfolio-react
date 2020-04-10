@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap");
+
+.nav-body{
+    
+
+    
+    //제목 텍스트
+    &-text{
+        font-family: 'Nanum-Gothic';
+        font-size: 15px;
+        color: white;
+    }
+
+    //검색 입력창
+    &-input{
+        border: 3px solid #999;
+        border-radius: 5px;
+        border-color: #0000CD;
+        background-color: white;
+    }
+
+}
+
+
+
+.nav-text:hover{
+    color:blue;
+}
+
+.nav-title{
+    font-family: 'Nanum-Gothic';
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin-right: 100px;
+}
+
+.nav-input{
+
+
+}
