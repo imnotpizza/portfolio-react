@@ -37,7 +37,7 @@ const Home=()=>{
             setMovieItems(response.data);
 
         }catch(e){
-            console.log(e)
+           
         }finally{
           setIsLoading(false);
         }

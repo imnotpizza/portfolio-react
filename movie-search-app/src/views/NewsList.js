@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { fetchAddScrap, fetchDeleteScrap } from '../apis/list';
 import "../scss/newsItems.scss";
-import {Card, Button, Row, Col, Image} from 'react-bootstrap';
+import {Card, Button, Row, Col, Image, Badge} from 'react-bootstrap';
+import BgText from './BgText';
 import util from "../utils";
 
 
@@ -10,26 +11,21 @@ export default ({ addScrap, deleteScrap, newsItems }) => {
     <div id="news-list-body">
 
       {
-          newsItems.length===0 ? (
+         
+          newsItems.map((item, id) => {
+              return (
+              <NewsItem
+                  key={id}
+                  addScrap={addScrap}
+                  deleteScrap={deleteScrap}
+                  newsItem={item}
+                  idx={id}
+              ></NewsItem>
+              );
+          })
 
-            <h1>결과가 없습니다.</h1>
-
-          ):(
-           
-            newsItems.map((item, id) => {
-                return (
-                <NewsItem
-                    key={id}
-                    addScrap={addScrap}
-                    deleteScrap={deleteScrap}
-                    newsItem={item}
-                    idx={id}
-                ></NewsItem>
-                );
-            })
-
-          )
-      }
+          
+        }
 
    
     </div>
@@ -49,6 +45,31 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
         window.open(newsItem.url, '_blank');
     }
 
+    const parsePubdate=()=>{
+      const date=new Date(newsItem.pubdate);
+
+      const y=date.getFullYear();
+      const m=date.getMonth()+1;
+      const d=date.getDate();
+      const h=date.getHours();
+      const M=date.getMinutes();
+      const s=date.getSeconds();
+
+      return `${y}년 ${m}월 ${d}일`
+      
+    }
+
+    const parseKeywords=()=>{
+      return newsItem.keywords.split('|').map((news, id)=>{
+        return (
+          <span className="news-item-keywords" key={id}>
+            <Badge variant="primary">{news}</Badge>
+          </span>
+     
+        )
+      })
+    }
+
 
   return (
     <Card className="news-item-temp">
@@ -58,48 +79,35 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
                     <img className="news-item-thumbnail" src={newsItem.img}></img>
                 </Col>
                 <Col xs={8}>
-                    <Card.Title>{newsItem.title}</Card.Title>
+                    <div className="news-item-temp-title">{newsItem.title}</div>
                     <Card.Text>
-                        {newsItem.abstract}
+                        <div className="news-item-temp-abstract">{newsItem.abstract}</div>
+                    </Card.Text>
+                    <Card.Text>
+                        <div className="news-item-temp-pubdate">작성시간 : {parsePubdate()}</div>
                     </Card.Text>
                     <Row>
+                      <Col md={{ span: 3, offset: 10 }}>
+                        
                         <Button 
                         variant={newsItem.isScrap ? "danger" : "primary"} 
                         onClick={onClickScrap}>
                         {newsItem.isScrap ? '스크랩 삭제' : '스크랩'}
                         </Button>
 
-                        <Card.Link href={newsItem.url}>링크 이동</Card.Link>
+                        <a className="news-item-temp-link" href={newsItem.url} target="_blank">링크 이동</a>
+                        </Col>
                     </Row>
                 </Col>
 
             </Row>
+            <h5>키워드 목록</h5>
+            <Row>
+              <Col>{parseKeywords()}</Col>
+            </Row>
          
         </Card.Body>
     </Card>
-
-
-
-    // <div className="news-item">
-    //   <div className="news-item-box1">
-    //     <img className="news-item-thumbnail" src={newsItem.img}></img>
-    //   </div>
-
-    //   <div className="news-item-box2">
-    //     <div className="news-item-title">{newsItem.title}</div>
-    //     <div className="news-item-subtitle">{newsItem.abstract}</div>
-    //   </div>
-
-    //   <div className="news-item-box3"> 
-    //       <button onClick={onClickScrap}>{newsItem.isScrap ? 'deletescrap' : 'scrap'}</button>
-          
-    //       <button onClick={showArticle}>기사 보기</button>
-    //   </div>
-    //   <div>
-    //       <Tags keywords={util.parseKeywords(newsItem.keywords)}></Tags>
-    //   </div>
-    
-    // </div>
 
   );
 };
