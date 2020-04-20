@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import HomeView from "./views/HomeView";
-import './scss/introduction.scss';
+import Introduction from './views/Introduction';
+import './sass/Introduction.scss';
 
 const App = () => {
 
@@ -15,27 +16,11 @@ const App = () => {
 
   return (
     <>
-      {intro ? <Intruduction></Intruduction> : <HomeView></HomeView>}
+      {intro ? <Introduction></Introduction> : <HomeView></HomeView>}
+     
     </>
    
   );
 };
-
-const Intruduction=()=>{
-  return(
-    <div id="intro-background">
-
-      <div id="intro-title">
-        방문해주셔서 감사합니다
-      </div>
-      <div id="intro-subtitle">
-        <p>NYPost News Search App</p>
-        <p>ver : 1.0.0</p>
-        <p>제작자 : 고보빈</p>
-
-      </div>
-    </div>
-  )
-}
 
 export default App;

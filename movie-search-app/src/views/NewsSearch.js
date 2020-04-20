@@ -1,41 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Description from './Description'
-import '../scss/newsSearch.scss'
+import '../sass/NewsSearch.scss'
 import {Button} from 'react-bootstrap';
 export default ({fetchNewsItems})=>{
 
     const [query, setQuery]=useState('');
     const [modalShow, setModalShow] = React.useState(false);
+    const focusInput=useRef();
 
     const onChange=(e)=>{
         setQuery(e.target.value);
     }
 
     const onSubmitResult=()=>{
+        const isEng=  /^[a-zA-Z0-9]*$/;
+
         if(!query){
-            alert("검색어를 입력해주세요"); return;
+            alert("검색어를 입력해주세요");
+            focusInput.current.focus();
+            return;
+        }else if(!isEng.test(query)){
+            alert('영어 단어만 입력해주세요'); 
+            focusInput.current.focus();
+            return;
         }
 
         fetchNewsItems(query);
 
-        setQuery('');
     }
 
     return(
-        <div id="app-body">
-            <span className="nav-title">The NYTimes Article Search App</span>
+        <div id="nav-container">
+            <span id="nav-title">The NYTimes Article Search App</span>
             <input 
-            className="nav-body-input" 
+            id="nav-input" 
             onChange={onChange}
             value={query}
-            placeholder="검색어 입력"
+            placeholder="검색어 입력 (영어만 입력해주세요)"
+            ref={focusInput}
             ></input>
             <button
             onClick={onSubmitResult}
-            className="nav-body-button"
+            id="nav-input-button"
             >검색
             </button>
-            <span className="nav-modal">
+            <span id="nav-modal-title">
                 <Button variant="link" onClick={()=>{setModalShow(true)}}>프로젝트 설명</Button>
             </span>
             <Description isOpen={modalShow} closeModal={()=>{setModalShow(false)}}></Description>

@@ -1,20 +1,27 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NewsList from "./NewsList";
 import NewsSearch from "./NewsSearch";
-import NoResults from "./NoResults";
 import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
 import Spinner from 'react-bootstrap/Spinner';
 import util from '../utils';
 import BgText from './BgText';
-import "../scss/newsHome.scss";
+import produce from 'immer';
+import "../sass/HomeView.scss";
 
 import { tempItems2 } from "../constants";
 
 export default () => {
   const [newsItems, setNewsItems] = useState([]); //뉴스 데이터
   const [scrapItems, setScrapItems] = useState([]); //스크랩 데이터
-  const [tempQ, setTempQ] = useState(''); //임시 검색어 저장
+  const [tempQ, setTempQ] = useState(''); //임시 검색어 저장-redux적용 후 삭제예정
   
+  const [flags, setFlags]=useState({
+    isLoading: false,
+    isMoreLoading: false,
+    isFirstVisited: true,
+    tabMode: true,
+  })
+
   const [isLoading, setIsLoading] = useState(false); //로딩 플래그
   const [isMoreLoading, setIsMoreLoading] = useState(false); //추가 데이터 로딩 플래그
   const [isFirst, setIsFirst] = useState(true); //로딩 플래그
@@ -27,7 +34,6 @@ export default () => {
 
 //페이지 진입시 스크랩 정보 저장
   useEffect(() => {
-     
       fetchScrapItems();
   },[]);
 
@@ -62,12 +68,8 @@ export default () => {
     try{
       
       setIsMoreLoading(true);
-      const _newsItems=await fetchNewsList(tempQ, pageNum+1, scrapItems);
-      
-      //console.log(_newsItems)
-      
-      //console.log([...newsItems, ..._newsItems]);
-      
+      const _newsItems=await fetchNewsList(tempQ, pageNum+1, scrapItems);    
+
       setNewsItems([
         ...newsItems,
         ..._newsItems
@@ -276,22 +278,22 @@ export default () => {
   //loading, tabMode, noResults,
   
   return (
-    <div id="nav-body">
-      
-    
+    <div>
         <NewsSearch fetchNewsItems={fetchNewsItems}></NewsSearch>
 
-        <div className="tabs">
+        <div id="tabs-container">
           <div
-            className={!tabMode ? "tab" : "tab-selected"}
+            id={!tabMode ? "tabs-item" : "tabs-item-selected"}
             onClick={() => setTabMode(true)}>
-          검색
+
+              <div id={!tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>검색</div>
           </div>
 
           <div
-            className={tabMode ? "tab" : "tab-selected"}
+            id={tabMode ? "tabs-item" : "tabs-item-selected"}
             onClick={() => setTabMode(false)}>
-          스크랩
+
+              <div  id={tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>스크랩</div>
           </div>
         </div>
 
@@ -302,7 +304,7 @@ export default () => {
 
         <div align="center">
              <button 
-              className="btn-load-additional" 
+              id="btn-load-additional" 
               onClick={fetchMoreNews}
               disabled={isMoreLoading}
               >

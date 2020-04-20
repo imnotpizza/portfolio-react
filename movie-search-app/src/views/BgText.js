@@ -1,5 +1,5 @@
 import React from "react";
-import "../scss/newsHome.scss";
+import "../sass/BgText.scss";
 
 export default ({ main, sub }) => {
   return (

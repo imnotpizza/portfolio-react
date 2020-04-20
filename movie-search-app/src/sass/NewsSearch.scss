@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap");
+$nav-bgcolor: rgb(112, 196, 245);
+$nav-border-color:  #0000CD;
+$nav-font: 'Nanum-Gothic';
+
+
+#nav{
+    &-container{
+        width: 100%;
+        height: 60px;
+        background :$nav-bgcolor;
+        padding: 20px;
+    }
+
+    &-title{
+        position: relative;
+        bottom: 11px;
+        font-family: $nav-font;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    &-input{
+        position: relative;
+        bottom: 11px;
+
+        height: 40px;
+        width: 400px;
+
+        margin-left: 6rem;
+        margin-right: 2rem;
+
+        border: 2px solid $nav-border-color;
+        border-radius: 6px;
+        background-color: white;
+    }
+
+    &-input-button{
+        position: relative;
+        bottom: 11px;
+
+        height: 40px;
+        width: 70px;
+
+        margin-right: 2rem;
+
+        border: 2px solid $nav-border-color;
+        border-radius: 6px;
+        background-color: white;
+
+        &:hover{
+            background-color: $nav-border-color;
+            color: white;
+            border-color: white;
+        }
+    }
+
+    &-modal-title{
+        position: relative;
+        bottom: 11px;
+    }
+}

@@ -1,16 +1,30 @@
 import axios from "axios";
 import { X_NAVER_CLIENT_ID ,  X_NAVER_CLIENT_SECRET} from "../constants";
-import { BASE_URL } from '../constants'
+//import { BASE_URL } from '../constants'
+
+//const BASE_URL= process.env.REACT_APP_BASEURL;
+
+//const BASE_URL = "http://localhost:3000/api";
+const BASE_URL="http://ec2-13-209-66-146.ap-northeast-2.compute.amazonaws.com:3000/api";
+
 
 export default {
-
+  
 
   get(path) {
-    return axios.get(BASE_URL+path);
+    return axios.get(BASE_URL+path)
+    .catch(err=>{
+      
+      if(!err.response){
+        alert("현재 서버 점검중입니다. 나중에 다시 시도해주세요")
+      }
+  
+    })
   },
 
   post(path, data) {
-    return axios.post(BASE_URL + "/" + path, data);
+    return axios.post(BASE_URL + "/" + path, data)
+   
   },
 
   put(path, data) {

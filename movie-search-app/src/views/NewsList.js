@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchAddScrap, fetchDeleteScrap } from '../apis/list';
-import "../scss/newsItems.scss";
+import "../sass/NewsList.scss";
 import {Card, Button, Row, Col, Image, Badge} from 'react-bootstrap';
 import BgText from './BgText';
 import util from "../utils";
@@ -11,7 +11,7 @@ export default ({ addScrap, deleteScrap, newsItems }) => {
     <div id="news-list-body">
 
       {
-         
+        
           newsItems.map((item, id) => {
               return (
               <NewsItem
@@ -79,12 +79,12 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
                     <img className="news-item-thumbnail" src={newsItem.img}></img>
                 </Col>
                 <Col xs={8}>
-                    <div className="news-item-temp-title">{newsItem.title}</div>
+                    <div className="news-item-title">{newsItem.title}</div>
                     <Card.Text>
-                        <div className="news-item-temp-abstract">{newsItem.abstract}</div>
+                        <div className="news-item-abstract">{newsItem.abstract}</div>
                     </Card.Text>
                     <Card.Text>
-                        <div className="news-item-temp-pubdate">작성시간 : {parsePubdate()}</div>
+                        <div className="news-item-pubdate">작성시간 : {parsePubdate()}</div>
                     </Card.Text>
                     <Row>
                       <Col md={{ span: 3, offset: 10 }}>
@@ -95,7 +95,7 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
                         {newsItem.isScrap ? '스크랩 삭제' : '스크랩'}
                         </Button>
 
-                        <a className="news-item-temp-link" href={newsItem.url} target="_blank">링크 이동</a>
+                        <a className="news-item-link" href={newsItem.url} target="_blank">링크 이동</a>
                         </Col>
                     </Row>
                 </Col>

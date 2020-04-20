@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap");
+$bgtext-color: grey;
+
+
+#bg-text{
+
+    margin: 0 auto;
+    text-align: center;
+    padding-top : 350px;
+    padding-bottom : 200px;
+  
+    &-main{
+        font-family: 'Nanum-Gothic';
+        font-weight: bolder;
+        color: $bgtext-color;
+        margin-bottom: 35px;
+        font-size: 3rem;
+    }
+
+    &-sub{
+        font-family: 'Nanum-Gothic';
+        font-weight: bolder;
+        color: $bgtext-color;
+        margin-bottom: 30rem;
+        font-size: 1.5rem;
+    }
+    
+}
