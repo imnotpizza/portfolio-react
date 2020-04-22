@@ -41,7 +41,7 @@ $nav-font: 'Nanum-Gothic';
         bottom: 11px;
 
         height: 40px;
-        width: 70px;
+        width: 100px;
 
         margin-right: 2rem;
 
@@ -54,6 +54,23 @@ $nav-font: 'Nanum-Gothic';
             color: white;
             border-color: white;
         }
+    }
+
+
+    &-input-button-loading{
+        position: relative;
+        bottom: 11px;
+
+        height: 40px;
+        width: 100px;
+
+        margin-right: 2rem;
+
+        border: 2px solid white;
+        border-radius: 6px;
+        background-color:  $nav-border-color;
+        color: white;
+
     }
 
     &-modal-title{

@@ -72,9 +72,9 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
 
 
   return (
-    <Card className="news-item-temp">
+    <Card className="news-item">
         <Card.Body>
-            <Row className="news-item-temp-box1">
+            <Row className="news-item-container">
                 <Col xs={2}>
                     <img className="news-item-thumbnail" src={newsItem.img}></img>
                 </Col>
@@ -86,24 +86,24 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
                     <Card.Text>
                         <div className="news-item-pubdate">작성시간 : {parsePubdate()}</div>
                     </Card.Text>
-                    <Row>
-                      <Col md={{ span: 3, offset: 10 }}>
-                        
-                        <Button 
-                        variant={newsItem.isScrap ? "danger" : "primary"} 
-                        onClick={onClickScrap}>
-                        {newsItem.isScrap ? '스크랩 삭제' : '스크랩'}
-                        </Button>
-
-                        <a className="news-item-link" href={newsItem.url} target="_blank">링크 이동</a>
-                        </Col>
-                    </Row>
+                    <a className="news-item-link" href={newsItem.url} target="_blank">링크 이동</a>
                 </Col>
 
             </Row>
-            <h5>키워드 목록</h5>
+            <div class="news-item-keyword-title">키워드</div>
             <Row>
-              <Col>{parseKeywords()}</Col>
+              <Col xs={10}>
+              {parseKeywords()}
+              </Col>
+              <Col xs={2}>
+      
+                <Button 
+                variant={newsItem.isScrap ? "danger" : "primary"} 
+                onClick={onClickScrap}>
+                {newsItem.isScrap ? '스크랩 삭제' : '스크랩'}
+                </Button>
+
+              </Col>
             </Row>
          
         </Card.Body>

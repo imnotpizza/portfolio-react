@@ -242,11 +242,13 @@ export default () => {
           ></BgText>
 
           ):(
-          <NewsList
-          addScrap={addScrap}
-          deleteScrap={deleteScrap}
-          newsItems={newsItems}
-          ></NewsList>
+          <div id="list-container">
+            <NewsList
+            addScrap={addScrap}
+            deleteScrap={deleteScrap}
+            newsItems={newsItems}
+            ></NewsList>
+          </div>
           )
       )
       }
@@ -263,11 +265,13 @@ export default () => {
       )
     }else{
       return(
+        <div id="list-container">
         <NewsList
         addScrap={addScrap}
         deleteScrap={deleteScrap}
         newsItems={scrapItems}
         ></NewsList>
+        </div>
       )
     }
   }
@@ -279,7 +283,7 @@ export default () => {
   
   return (
     <div>
-        <NewsSearch fetchNewsItems={fetchNewsItems}></NewsSearch>
+        <NewsSearch fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearch>
 
         <div id="tabs-container">
           <div
