@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsList from "./NewsList";
-import NewsSearch from "./NewsSearch";
+import NewsSearchContainer from "../containers/NewsSearchContainer";
 import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
 import ClipLoader from "react-spinners/ClipLoader";
 import util from '../utils';
@@ -11,17 +11,10 @@ import "../sass/HomeView.scss";
 
 import { tempItems2 } from "../constants";
 
-export default () => {
-  const [newsItems, setNewsItems] = useState([]); //뉴스 데이터
+export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
+  const [newsItems, getNewsItems] = useState([]); //뉴스 데이터
   const [scrapItems, setScrapItems] = useState([]); //스크랩 데이터
-  const [tempQ, setTempQ] = useState(''); //임시 검색어 저장-redux적용 후 삭제예정
-  
-  const [flags, setFlags]=useState({
-    isLoading: false,
-    isMoreLoading: false,
-    isFirstVisited: true,
-    tabMode: true,
-  })
+
 
   const [isLoading, setIsLoading] = useState(false); //로딩 플래그
   const [isMoreLoading, setIsMoreLoading] = useState(false); //추가 데이터 로딩 플래그
@@ -36,22 +29,26 @@ export default () => {
 
 //페이지 진입시 스크랩 정보 저장
   useEffect(() => {
-
+      console.log(isLoading2)
       fetchScrapItems();
   },[]);
 
+  
 
   //검색결과 API 호출 후 데이터 반영 로직
   const fetchNewsItems = useCallback(async (query) => {
       
     try {
-        setTempQ(query);
+        
         setIsLoading(true);//로딩 ui 활성화
         setIsFirst(false);//검색 안함 플래그 비활성화
 
         const _newsItems=await fetchNewsList(query, 0, scrapItems);
-    
-        setNewsItems(_newsItems);
+
+        console.log(_newsItems)
+        getNewsItems(_newsItems);
+
+        
         setPageNum(0);
 
     } catch (e) {
@@ -64,16 +61,16 @@ export default () => {
     }
 
    
-  });
+  },[newsItems]);
 
   //추가 데이터 로딩 200회까지
-  const fetchMoreNews=useCallback(async (query)=>{
+  const fetchMoreNews=useCallback(async ()=>{
     try{
       
       setIsMoreLoading(true);
-      const _newsItems=await fetchNewsList(tempQ, pageNum+1, scrapItems);    
+      const _newsItems=await fetchNewsList(query, pageNum+1, scrapItems);    
 
-      setNewsItems([
+      getNewsItems([
         ...newsItems,
         ..._newsItems
       ]);
@@ -128,17 +125,13 @@ export default () => {
       
         fetchAddScrap(newsItem)
       .then(res=>{
-        
-        const scrapIdx=scrapItems.indexOf(newsItem);//search에서 클릭시
-        const searchIdx=newsItems.indexOf(newsItem);//scrap에서 클릭시
-        
+   
         //뉴스검색 : isScrap 교체 
-        
         
         //검색 데이터 수정
         newsItem.isScrap=true;
         
-        setNewsItems([
+        getNewsItems([
           ...newsItems.slice(0, idx),
           newsItem,
           ...newsItems.slice(idx + 1)
@@ -200,7 +193,7 @@ export default () => {
             //검색 데이터 수정
             if(searchIdx>-1){
               newsItem.isScrap=false;
-              setNewsItems([
+              getNewsItems([
                   ...newsItems.slice(0, searchIdx),
                   newsItem,
                   ...newsItems.slice(searchIdx + 1)
@@ -225,7 +218,6 @@ export default () => {
   //추가 데이터 호출여부 판단
   const shouldLoadMore=()=>{
     if(isFirst || !tabMode){
-      console.log("stop")
       return false;
 
     }else{
@@ -294,7 +286,6 @@ export default () => {
     }
   }
 
-
   //리스트 뷰 컨트롤
   //플래그
   //loading, tabMode, noResults,
@@ -308,8 +299,15 @@ export default () => {
       >
         
         <div>
+
+            <div>
+              {newsItems.length}
+              {isLoading2 ? 'on' : 'offf'}
+              <button onClick={startLoading}>loading on</button>
+              <button onClick={endLoading}>loading off</button>
+            </div>
           
-            <NewsSearch fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearch>
+            <NewsSearchContainer fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearchContainer>
 
             <div id="tabs-container">
               <div
@@ -349,3 +347,6 @@ export default () => {
       </InfiniteScroll>
   );
 };
+
+
+export default HomeView;

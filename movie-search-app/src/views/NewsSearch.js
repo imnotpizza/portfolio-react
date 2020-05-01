@@ -5,17 +5,19 @@ import { Button } from 'react-bootstrap';
 
 
 
-export default ({ fetchNewsItems, isLoading }) => {
+export default ({ fetchNewsItems, isLoading, query, setQuery }) => {
 
-    const [query, setQuery] = useState('');
+    //const [query, setQuery] = useState('');
     const [modalShow, setModalShow] = React.useState(false);
     const focusInput = useRef();
 
     const onChange = (e) => {
-        setQuery(e.target.value);
+        setQuery(e.target.value)//상태 관리
     }
 
     const onSubmitResult = () => {
+   
+        
         const isEng = /^[a-zA-Z0-9\s]*$/;
 
         if (!query) {
@@ -27,7 +29,7 @@ export default ({ fetchNewsItems, isLoading }) => {
             focusInput.current.focus();
             return;
         }
-
+        
         fetchNewsItems(query);
 
     }

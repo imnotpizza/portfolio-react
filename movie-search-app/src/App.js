@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import HomeView from "./views/HomeView";
+import HomeViewContainer from "./containers/HomeViewContainer";
 import Introduction from './views/Introduction';
 import './sass/Introduction.scss';
 
@@ -11,9 +12,7 @@ const App = () => {
   const [intro, setIntro]=useState(SHOW_INTRO);
 
   useEffect(()=>{
-    
-    console.log(process.env.REACT_APP_SHOWINTRO)
-
+  
     if(SHOW_INTRO){
 
       setTimeout(()=>{   
@@ -25,7 +24,7 @@ const App = () => {
 
   return (
     <>
-      {intro ? <Introduction></Introduction> : <HomeView></HomeView>}
+      {intro ? <Introduction></Introduction> : <HomeViewContainer></HomeViewContainer>}
      
     </>
    
