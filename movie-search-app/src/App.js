@@ -3,15 +3,24 @@ import HomeView from "./views/HomeView";
 import Introduction from './views/Introduction';
 import './sass/Introduction.scss';
 
+const SHOW_INTRO=process.env.REACT_APP_SHOWINTRO==='true';
+const INTRO_TIME=4000;
+
 const App = () => {
 
-  const [intro, setIntro]=useState(true);
+  const [intro, setIntro]=useState(SHOW_INTRO);
 
   useEffect(()=>{
-    setTimeout(()=>{
+    
+    console.log(process.env.REACT_APP_SHOWINTRO)
 
-      setIntro(false);
-    },4000)
+    if(SHOW_INTRO){
+
+      setTimeout(()=>{   
+        setIntro(false);
+      },INTRO_TIME)
+
+    }
   },[])
 
   return (

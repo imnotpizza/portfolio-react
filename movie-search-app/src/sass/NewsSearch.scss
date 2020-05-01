@@ -6,45 +6,54 @@ $nav-font: 'Nanum-Gothic';
 
 #nav{
     &-container{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        
         width: 100%;
         height: 60px;
         background :$nav-bgcolor;
         padding: 20px;
     }
 
+    
+
     &-title{
-        position: relative;
-        bottom: 11px;
         font-family: $nav-font;
         font-weight: bold;
         font-size: 1.5rem;
         color: white;
+        margin-right: 50px;
+        white-space: pre;//문자 화면 상관없이 그대로 유지
+    }
+
+    &-search{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
     }
 
     &-input{
-        position: relative;
-        bottom: 11px;
+        display: flex;
 
         height: 40px;
         width: 400px;
 
-        margin-left: 6rem;
-        margin-right: 2rem;
-
         border: 2px solid $nav-border-color;
         border-radius: 6px;
         background-color: white;
+        margin-right: 20px;
     }
 
     &-input-button{
-        position: relative;
-        bottom: 11px;
+        display: flex;
+        align-content: center;
+        text-align: center;
 
         height: 40px;
         width: 100px;
 
-        margin-right: 2rem;
-
+        
         border: 2px solid $nav-border-color;
         border-radius: 6px;
         background-color: white;
@@ -58,13 +67,11 @@ $nav-font: 'Nanum-Gothic';
 
 
     &-input-button-loading{
-        position: relative;
-        bottom: 11px;
+        display: flex;
+        text-align: center;
 
         height: 40px;
         width: 100px;
-
-        margin-right: 2rem;
 
         border: 2px solid white;
         border-radius: 6px;
@@ -74,7 +81,44 @@ $nav-font: 'Nanum-Gothic';
     }
 
     &-modal-title{
-        position: relative;
-        bottom: 11px;
+       display: flex;
+       margin-left: 30px;
+    }
+}
+
+@media screen and (max-width: 760px){
+    #nav{
+        &-container{
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            width: 100%;
+            height: 180px;
+            background :$nav-bgcolor;
+            padding: 20px;
+        }
+
+        &-title{
+            font-family: $nav-font;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+            margin-right: 50px;
+            white-space: pre;//문자 화면 상관없이 그대로 유지
+            margin-bottom: 20px;
+        }
+
+        &-search{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+
+        &-modal-title{
+            display: flex;
+         }
+
     }
 }

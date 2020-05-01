@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsList from "./NewsList";
 import NewsSearch from "./NewsSearch";
 import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
-import Spinner from 'react-bootstrap/Spinner';
+import ClipLoader from "react-spinners/ClipLoader";
 import util from '../utils';
 import BgText from './BgText';
 import produce from 'immer';
@@ -32,8 +33,10 @@ export default () => {
   const [pageNum, setPageNum] = useState(0); //페이징 넘버
 
 
+
 //페이지 진입시 스크랩 정보 저장
   useEffect(() => {
+
       fetchScrapItems();
   },[]);
 
@@ -91,7 +94,7 @@ export default () => {
 
     try {
 
-        setIsLoading(true);
+   
         
         const _scrapItems=await fetchScrapList();
         
@@ -103,10 +106,14 @@ export default () => {
         console.log(e);
     } finally {
 
-      setIsLoading(false);
+ 
     }
 
   })
+
+  const loadMore=()=>{
+    alert('loading')
+  }
 
 
 
@@ -215,6 +222,17 @@ export default () => {
       
     
   });
+  //추가 데이터 호출여부 판단
+  const shouldLoadMore=()=>{
+    if(isFirst || !tabMode){
+      console.log("stop")
+      return false;
+
+    }else{
+      return true;
+    }
+  }
+
 
   //대문 페이지 종료후 앱으로 이동
   const startApp = () => {
@@ -282,58 +300,52 @@ export default () => {
   //loading, tabMode, noResults,
   
   return (
-    <div>
-        <NewsSearch fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearch>
-
-        <div id="tabs-container">
-          <div
-            id={!tabMode ? "tabs-item" : "tabs-item-selected"}
-            onClick={() => setTabMode(true)}>
-
-              <div id={!tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>검색</div>
-          </div>
-
-          <div
-            id={tabMode ? "tabs-item" : "tabs-item-selected"}
-            onClick={() => setTabMode(false)}>
-
-              <div  id={tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>스크랩</div>
-          </div>
-        </div>
-
-        {tabMode ? showSearchPage() : showScrapPage()}
-      
+      <InfiniteScroll
+      dataLength={newsItems.length}
+      next={fetchMoreNews}
+      hasMore={shouldLoadMore()}
+      scrollThreshold={0.9}
+      >
         
-      {newsItems.length>0 && tabMode &&
+        <div>
+          
+            <NewsSearch fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearch>
 
-        <div align="center">
-             <button 
-              id="btn-load-additional" 
-              onClick={fetchMoreNews}
-              disabled={isMoreLoading}
-              >
-              {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
-              </button>
-        </div>
+            <div id="tabs-container">
+              <div
+                id={!tabMode ? "tabs-item" : "tabs-item-selected"}
+                onClick={() => setTabMode(true)}>
 
-      }
+                  <div id={!tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>검색</div>
+              </div>
 
+              <div
+                id={tabMode ? "tabs-item" : "tabs-item-selected"}
+                onClick={() => setTabMode(false)}>
 
-    </div>
+                  <div  id={tabMode ? "tabs-item-text" : "tabs-item-selected-text"}>스크랩</div>
+              </div>
+            </div>
+
+            {tabMode ? showSearchPage() : showScrapPage()}
+
+        
+          {newsItems.length>0 && tabMode &&
+
+             <div align="center">
+                 <button 
+                   id="btn-load-additional" 
+                   onClick={fetchMoreNews}
+                   disabled={isMoreLoading}
+                   >
+                   {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
+                   </button>
+             </div>
+          
+
+          }
+
+          </div>
+      </InfiniteScroll>
   );
 };
-
-
-export const Loading = ()=>{
-  return(
-    <div>
-       <Spinner animation="border" variant="primary" />
-    </div>
-  )
-}
-
-
-/**
- *  
-
- */

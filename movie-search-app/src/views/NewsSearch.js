@@ -34,24 +34,34 @@ export default ({ fetchNewsItems, isLoading }) => {
 
     return (
         <div id="nav-container">
-            <span id="nav-title">The NYTimes Article Search App</span>
-            <input
-                id="nav-input"
-                onChange={onChange}
-                value={query}
-                placeholder="검색어 입력 (영어만 입력해주세요)"
-                ref={focusInput}
-            ></input>
-            <button
-                onClick={onSubmitResult}
-                id={isLoading ? "nav-input-button-loading" : "nav-input-button"}
-                disabled={isLoading}
-            >
-            {isLoading ? '검색 중..' : '검색'}
-            </button>
-            <span id="nav-modal-title">
-                <Button variant="link" onClick={() => { setModalShow(true) }}>프로젝트 설명</Button>
-            </span>
+            <div id="nav-title">
+                <span>The NYTimes Article Search App</span>
+            </div>
+
+            <div id="nav-search">
+                <input
+                    id="nav-input"
+                    onChange={onChange}
+                    value={query}
+                    placeholder="검색어 입력 (영어만 입력해주세요)"
+                    ref={focusInput}
+                ></input>
+                <button
+                    onClick={onSubmitResult}
+                    id={isLoading ? "nav-input-button-loading" : "nav-input-button"}
+                    disabled={isLoading}
+                >
+                    {isLoading ? '검색 중..' : '검색'}
+                </button>
+            </div>
+
+            <div id="nav-modal-title">
+             
+                    <Button variant="link" onClick={() => { setModalShow(true) }}>프로젝트 설명</Button>
+              
+            </div>
+
+
             <Description isOpen={modalShow} closeModal={() => { setModalShow(false) }}></Description>
         </div>
     )

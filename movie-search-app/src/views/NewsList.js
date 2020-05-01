@@ -24,9 +24,7 @@ export default ({ addScrap, deleteScrap, newsItems }) => {
               );
           })
 
-          
         }
-
    
     </div>
   );
