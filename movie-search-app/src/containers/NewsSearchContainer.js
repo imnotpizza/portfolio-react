@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getNewsList, setQuery} from '../redux/news';
+import {fetchNewsItems, setQuery} from '../redux/news';
 import NewsSearch from '../views/NewsSearch';
 
 const mapStateToProps=state=>({
     query: state.news.query,
+    scrapItems: state.news.scrapItems,
 })
 
 const NewsSearchContainer=({
@@ -12,11 +13,13 @@ const NewsSearchContainer=({
     setQuery,
     fetchNewsItems,
     isLoading,
+    scrapItems,
 })=>{
     return(
         <NewsSearch
         query={query}
         setQuery={setQuery}
+        scrapItems={scrapItems}
         fetchNewsItems={fetchNewsItems}
         isLoading={isLoading}
         ></NewsSearch>
@@ -26,6 +29,7 @@ const NewsSearchContainer=({
 export default connect(
     mapStateToProps,
     {
-        setQuery
+        setQuery,
+        fetchNewsItems,
     }
 )(NewsSearchContainer)

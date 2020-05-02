@@ -41,17 +41,18 @@ export const fetchNewsList = (query, pageNum, scrapItems) => {
 };
 
 //스크랩 api 호출
-export const fetchScrapList = (query) => {
-  return base.get(`/scrap`).then((response) => {
+export const fetchScrapList = () => {
+  return base.get(`/scrap`)
+  .then((response) => {
     let resList = response.data.rows;
+
     return resList.map((res) => {
       return {
         ...res,
         isScrap: true,
       };
     });
-
-  });
+  })
 };
 
 //스크랩 추가

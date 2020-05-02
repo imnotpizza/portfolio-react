@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 
 
 
-export default ({ fetchNewsItems, isLoading, query, setQuery }) => {
+export default ({ fetchNewsItems, isLoading, query, setQuery, scrapItems }) => {
 
     //const [query, setQuery] = useState('');
     const [modalShow, setModalShow] = React.useState(false);
@@ -30,7 +30,8 @@ export default ({ fetchNewsItems, isLoading, query, setQuery }) => {
             return;
         }
         
-        fetchNewsItems(query);
+        fetchNewsItems(query, scrapItems);
+
 
     }
 

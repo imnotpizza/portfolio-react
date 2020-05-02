@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsList from "./NewsList";
+import NewsListContainer from '../containers/NewsListContainer';
 import NewsSearchContainer from "../containers/NewsSearchContainer";
 import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -11,15 +12,32 @@ import "../sass/HomeView.scss";
 
 import { tempItems2 } from "../constants";
 
-export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
-  const [newsItems, getNewsItems] = useState([]); //뉴스 데이터
-  const [scrapItems, setScrapItems] = useState([]); //스크랩 데이터
+export const HomeView=({
+  query, 
+  isLoading,
+  setIsLoading,
+  isMoreLoading,
+  setIsMoreLoading,
+  isFirst, 
+  setIsFirst,
+  tabMode, 
+  setTabMode,
+  newsItems,
+  setNewsItems,
+  scrapItems,
+  setScrapItems,
+  fetchScrapItems,
+ 
+}) => {
+
+  //const [newsItems, setNewsItems] = useState([]); //뉴스 데이터
+  //const [scrapItems, setScrapItems] = useState([]); //스크랩 데이터
 
 
-  const [isLoading, setIsLoading] = useState(false); //로딩 플래그
-  const [isMoreLoading, setIsMoreLoading] = useState(false); //추가 데이터 로딩 플래그
-  const [isFirst, setIsFirst] = useState(true); //로딩 플래그
-  const [tabMode, setTabMode] = useState(true); //tabMode
+  //const [isLoading, setIsLoading] = useState(false); //로딩 플래그
+  // const [isMoreLoading, setIsMoreLoading] = useState(false); //추가 데이터 로딩 플래그
+  // const [isFirst, setIsFirst] = useState(true); //로딩 플래그
+  // const [tabMode, setTabMode] = useState(true); //tabMode
  
   
 
@@ -29,14 +47,19 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
 
 //페이지 진입시 스크랩 정보 저장
   useEffect(() => {
-      console.log(isLoading2)
-      fetchScrapItems();
+ 
+    fetchScrapItems();
+   
   },[]);
+
+  useEffect(()=>{
+    console.log(newsItems)
+  },[newsItems])
 
   
 
   //검색결과 API 호출 후 데이터 반영 로직
-  const fetchNewsItems = useCallback(async (query) => {
+  const fetchNewsItems22 = useCallback(async (query) => {
       
     try {
         
@@ -45,9 +68,7 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
 
         const _newsItems=await fetchNewsList(query, 0, scrapItems);
 
-        console.log(_newsItems)
-        getNewsItems(_newsItems);
-
+        setNewsItems(_newsItems);
         
         setPageNum(0);
 
@@ -63,6 +84,8 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
    
   },[newsItems]);
 
+ 
+
   //추가 데이터 로딩 200회까지
   const fetchMoreNews=useCallback(async ()=>{
     try{
@@ -70,7 +93,7 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
       setIsMoreLoading(true);
       const _newsItems=await fetchNewsList(query, pageNum+1, scrapItems);    
 
-      getNewsItems([
+      setNewsItems([
         ...newsItems,
         ..._newsItems
       ]);
@@ -86,31 +109,23 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
   })
 
 
-    //스크랩 API 호출 후  반영 로직
-  const fetchScrapItems=useCallback(async()=>{
+  //   //스크랩 API 호출 후  반영 로직
+   const fetchScrapItems22=useCallback(async()=>{
+     try {
 
-    try {
-
-   
-        
-        const _scrapItems=await fetchScrapList();
-        
-        setScrapItems(_scrapItems);
-
-    } catch (e) {
-
-        alert("API 호출 도중 문제가 발생했습니다.")
-        console.log(e);
-    } finally {
-
- 
-    }
-
-  })
-
-  const loadMore=()=>{
-    alert('loading')
-  }
+     
+         const _scrapItems=await fetchScrapList();
+     
+         setScrapItems(_scrapItems);
+     } catch (e) {
+         alert("API 호출 도중 문제가 발생했습니다.")
+         console.log(e);
+     } finally {
+     }
+   })
+   const loadMore=()=>{
+     alert('loading')
+   }
 
 
 
@@ -131,7 +146,7 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
         //검색 데이터 수정
         newsItem.isScrap=true;
         
-        getNewsItems([
+        setNewsItems([
           ...newsItems.slice(0, idx),
           newsItem,
           ...newsItems.slice(idx + 1)
@@ -193,7 +208,7 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
             //검색 데이터 수정
             if(searchIdx>-1){
               newsItem.isScrap=false;
-              getNewsItems([
+              setNewsItems([
                   ...newsItems.slice(0, searchIdx),
                   newsItem,
                   ...newsItems.slice(searchIdx + 1)
@@ -253,11 +268,11 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
 
           ):(
           <div id="list-container">
-            <NewsList
+            <NewsListContainer
             addScrap={addScrap}
             deleteScrap={deleteScrap}
-            newsItems={newsItems}
-            ></NewsList>
+           
+            ></NewsListContainer>
           </div>
           )
       )
@@ -276,11 +291,11 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
     }else{
       return(
         <div id="list-container">
-        <NewsList
+        <NewsListContainer
         addScrap={addScrap}
         deleteScrap={deleteScrap}
-        newsItems={scrapItems}
-        ></NewsList>
+       
+        ></NewsListContainer>
         </div>
       )
     }
@@ -292,23 +307,15 @@ export const HomeView=({isLoading2, startLoading, endLoading, query}) => {
   
   return (
       <InfiniteScroll
-      dataLength={newsItems.length}
+      dataLength={newsItems===undefined ? 0 : newsItems.length}
       next={fetchMoreNews}
       hasMore={shouldLoadMore()}
       scrollThreshold={0.9}
       >
         
         <div>
-
-            <div>
-              {newsItems.length}
-              {isLoading2 ? 'on' : 'offf'}
-              <button onClick={startLoading}>loading on</button>
-              <button onClick={endLoading}>loading off</button>
-            </div>
-          
-            <NewsSearchContainer fetchNewsItems={fetchNewsItems} isLoading={isLoading}></NewsSearchContainer>
-
+            <NewsSearchContainer isLoading={isLoading}></NewsSearchContainer>
+            {newsItems.length}
             <div id="tabs-container">
               <div
                 id={!tabMode ? "tabs-item" : "tabs-item-selected"}

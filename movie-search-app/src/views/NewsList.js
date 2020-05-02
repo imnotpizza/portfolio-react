@@ -77,12 +77,12 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
                     <img className="news-item-thumbnail" src={newsItem.img}></img>
                 </Col>
                 <Col xs={8}>
-                    <div className="news-item-title">{newsItem.title}</div>
+                    <p className="news-item-title">{newsItem.title}</p>
                     <Card.Text>
-                        <div className="news-item-abstract">{newsItem.abstract}</div>
+                        <p className="news-item-abstract">{newsItem.abstract}</p>
                     </Card.Text>
                     <Card.Text>
-                        <div className="news-item-pubdate">작성시간 : {parsePubdate()}</div>
+                        <p className="news-item-pubdate">작성시간 : {parsePubdate()}</p>
                     </Card.Text>
                     <a className="news-item-link" href={newsItem.url} target="_blank">링크 이동</a>
                 </Col>
