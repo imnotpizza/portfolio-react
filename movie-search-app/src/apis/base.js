@@ -2,8 +2,8 @@ import axios from "axios";
 import { X_NAVER_CLIENT_ID ,  X_NAVER_CLIENT_SECRET} from "../constants";
 //import { BASE_URL } from '../constants'
 
-//const BASE_URL= process.env.REACT_APP_BASEURL;
-const BASE_URL="http://localhost:3000/api";
+const BASE_URL= process.env.REACT_APP_BASEURL;
+//const BASE_URL="http://localhost:3000/api";
 
 export default {
   

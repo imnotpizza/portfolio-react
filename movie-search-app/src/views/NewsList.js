@@ -6,7 +6,7 @@ import BgText from './BgText';
 import util from "../utils";
 
 
-export default ({ addScrap, deleteScrap, newsItems }) => {
+export default ({ addScrap, deleteScrap, newsItems, scrapItems }) => {
   return (
     <div id="news-list-body">
 
@@ -18,6 +18,8 @@ export default ({ addScrap, deleteScrap, newsItems }) => {
                   key={id}
                   addScrap={addScrap}
                   deleteScrap={deleteScrap}
+                  newsItems={newsItems}
+                  scrapItems={scrapItems}
                   newsItem={item}
                   idx={id}
               ></NewsItem>
@@ -30,12 +32,15 @@ export default ({ addScrap, deleteScrap, newsItems }) => {
   );
 };
 
-const NewsItem = ({ idx, addScrap, deleteScrap, newsItem }) => {
+const NewsItem = ({ idx, addScrap, deleteScrap, newsItem, newsItems, scrapItems }) => {
 
     const onClickScrap=async()=>{
         
         //뉴스 isScrap 을 기준으로 판별
-        (newsItem.isScrap ? deleteScrap(newsItem, idx) : addScrap(newsItem, idx))
+        (newsItem.isScrap ? 
+          deleteScrap(newsItem, newsItems, scrapItems) : 
+          addScrap(newsItem, newsItems, scrapItems, idx)
+        )
        
     }
 

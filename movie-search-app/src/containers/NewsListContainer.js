@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setQuery} from '../redux/news';
+import {setQuery, addScrap, deleteScrap} from '../redux/news';
 import NewsList from '../views/NewsList';
 
 const mapStateToProps=state=>({
@@ -11,12 +11,17 @@ const mapStateToProps=state=>({
 
 const NewsSearchContainer=({
    newsItems,
-   tabMode,
    scrapItems,
+   tabMode,
+   addScrap,
+   deleteScrap,
 })=>{
     return(
         <NewsList
         newsItems={tabMode ? newsItems : scrapItems}
+        scrapItems={scrapItems}
+        addScrap={addScrap}
+        deleteScrap={deleteScrap}
         ></NewsList>
     )
 }
@@ -24,6 +29,8 @@ const NewsSearchContainer=({
 export default connect(
     mapStateToProps,
     {
-        setQuery
+        setQuery,
+        addScrap,
+        deleteScrap,
     }
 )(NewsSearchContainer)

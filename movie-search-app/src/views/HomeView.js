@@ -27,7 +27,8 @@ export const HomeView=({
   scrapItems,
   setScrapItems,
   fetchScrapItems,
- 
+  fetchMoreNews,
+  pageNum,
 }) => {
 
   //const [newsItems, setNewsItems] = useState([]); //뉴스 데이터
@@ -41,7 +42,7 @@ export const HomeView=({
  
   
 
-  const [pageNum, setPageNum] = useState(0); //페이징 넘버
+  //const [pageNum, setPageNum] = useState(0); //페이징 넘버
 
 
 
@@ -70,7 +71,7 @@ export const HomeView=({
 
         setNewsItems(_newsItems);
         
-        setPageNum(0);
+        //setPageNum(0);
 
     } catch (e) {
 
@@ -87,7 +88,7 @@ export const HomeView=({
  
 
   //추가 데이터 로딩 200회까지
-  const fetchMoreNews=useCallback(async ()=>{
+  const fetchMoreNews123=useCallback(async ()=>{
     try{
       
       setIsMoreLoading(true);
@@ -98,7 +99,7 @@ export const HomeView=({
         ..._newsItems
       ]);
       
-      setPageNum(pageNum+1);
+      //setPageNum(pageNum+1);
 
     }catch(e){
       alert("API 호출 도중 문제가 발생했습니다.")
@@ -132,7 +133,7 @@ export const HomeView=({
   //뉴스 항목 스크랩 추가-news 객체, newsItem의 index
   
   
-  const addScrap = useCallback((newsItem, idx) => {
+  const addScrap1 = useCallback((newsItem, idx) => {
 
   
     if (window.confirm("해당 기사를 스크랩 목록에 저장하시겠습니까?") != 0) {
@@ -177,7 +178,7 @@ export const HomeView=({
    */
 
   //뉴스 항목 스크랩 삭제 -news 객체, newsItem의 index
-  const deleteScrap = useCallback((newsItem, idx) => {
+  const deleteScrap1 = useCallback((newsItem, idx) => {
     
     if (window.confirm("해당 기사를 스크랩 목록에서 삭제하시겠습니까?") != 0) {
     
@@ -269,9 +270,7 @@ export const HomeView=({
           ):(
           <div id="list-container">
             <NewsListContainer
-            addScrap={addScrap}
-            deleteScrap={deleteScrap}
-           
+            newsItems={newsItems}
             ></NewsListContainer>
           </div>
           )
@@ -292,9 +291,7 @@ export const HomeView=({
       return(
         <div id="list-container">
         <NewsListContainer
-        addScrap={addScrap}
-        deleteScrap={deleteScrap}
-       
+        newsItems={scrapItems}
         ></NewsListContainer>
         </div>
       )
@@ -307,15 +304,15 @@ export const HomeView=({
   
   return (
       <InfiniteScroll
-      dataLength={newsItems===undefined ? 0 : newsItems.length}
-      next={fetchMoreNews}
+      dataLength={newsItems.length}
+      next={()=>{ console.log(newsItems); fetchMoreNews(query, pageNum, scrapItems, newsItems)}}
       hasMore={shouldLoadMore()}
       scrollThreshold={0.9}
       >
         
         <div>
-            <NewsSearchContainer isLoading={isLoading}></NewsSearchContainer>
-            {newsItems.length}
+            <NewsSearchContainer></NewsSearchContainer>
+    
             <div id="tabs-container">
               <div
                 id={!tabMode ? "tabs-item" : "tabs-item-selected"}

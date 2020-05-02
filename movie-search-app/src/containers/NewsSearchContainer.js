@@ -6,6 +6,7 @@ import NewsSearch from '../views/NewsSearch';
 const mapStateToProps=state=>({
     query: state.news.query,
     scrapItems: state.news.scrapItems,
+    isLoading: state.news.isLoading,
 })
 
 const NewsSearchContainer=({

@@ -29,7 +29,6 @@ export default ({ fetchNewsItems, isLoading, query, setQuery, scrapItems }) => {
             focusInput.current.focus();
             return;
         }
-        
         fetchNewsItems(query, scrapItems);
 
 
@@ -54,7 +53,8 @@ export default ({ fetchNewsItems, isLoading, query, setQuery, scrapItems }) => {
                     id={isLoading ? "nav-input-button-loading" : "nav-input-button"}
                     disabled={isLoading}
                 >
-                    {isLoading ? '검색 중..' : '검색'}
+                  
+                    {isLoading ? '검색 중...' : '검색'}
                 </button>
             </div>
 
