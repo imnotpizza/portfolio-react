@@ -6,21 +6,23 @@ import BgText from './BgText';
 import util from "../utils";
 
 
-export default ({ addScrap, deleteScrap, newsItems, scrapItems }) => {
+export default ({ addScrap, deleteScrap, listItems, newsItems, scrapItems }) => {
+
+
   return (
     <div id="news-list-body">
 
       {
         
-          newsItems.map((item, id) => {
+          listItems.map((item, id) => {
               return (
               <NewsItem
                   key={id}
                   addScrap={addScrap}
                   deleteScrap={deleteScrap}
+                  newsItem={item}
                   newsItems={newsItems}
                   scrapItems={scrapItems}
-                  newsItem={item}
                   idx={id}
               ></NewsItem>
               );
@@ -44,10 +46,6 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem, newsItems, scrapItems 
        
     }
 
-    const showArticle=()=>{
-        window.open(newsItem.url, '_blank');
-    }
-
     const parsePubdate=()=>{
       const date=new Date(newsItem.pubdate);
 
@@ -58,7 +56,7 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem, newsItems, scrapItems 
       const M=date.getMinutes();
       const s=date.getSeconds();
 
-      return `${y}년 ${m}월 ${d}일`
+      return `${y}년 ${m}월 ${d}일`;
       
     }
 
@@ -93,7 +91,7 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem, newsItems, scrapItems 
                 </Col>
 
             </Row>
-            <div class="news-item-keyword-title">키워드</div>
+            <div className="news-item-keyword-title">키워드</div>
             <Row>
               <Col xs={10}>
               {parseKeywords()}
@@ -114,11 +112,3 @@ const NewsItem = ({ idx, addScrap, deleteScrap, newsItem, newsItems, scrapItems 
 
   );
 };
-
-const Tags=({keywords})=>{
-    return(
-       keywords.map(keyword=>{
-       return <span className="news-item-keyword">{keyword}</span>
-       })
-    )
-}

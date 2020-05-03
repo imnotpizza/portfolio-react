@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    setNewsItems, 
     setIsLoading, 
     setIsMoreLoading, 
     setIsFirst, 
@@ -30,12 +29,10 @@ const mapStateToProps=state=>({
 //컨테이너 컴포넌트로 적용할 컴포넌트를 감쌈
 const HomeViewContainer=({
     newsItems,
-    setNewsItems,
     scrapItems,
     setScrapItems,
     query,
     pageNum,
-
     isLoading,
     setIsLoading,
     isFirst,
@@ -51,7 +48,6 @@ const HomeViewContainer=({
     return(
         <HomeView
         newsItems={newsItems}
-        setNewsItems={setNewsItems}
         scrapItems={scrapItems}
         setScrapItems={setScrapItems}
         query={query}
@@ -75,8 +71,6 @@ const HomeViewContainer=({
 export default connect(
     mapStateToProps,
     {
-        setNewsItems,
-        setScrapItems,
         setIsFirst,
         setIsLoading,
         setIsMoreLoading,

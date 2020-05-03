@@ -15,13 +15,15 @@ const NewsSearchContainer=({
    tabMode,
    addScrap,
    deleteScrap,
+   listItems,
 })=>{
     return(
         <NewsList
-        newsItems={tabMode ? newsItems : scrapItems}
+        newsItems={newsItems}
         scrapItems={scrapItems}
         addScrap={addScrap}
         deleteScrap={deleteScrap}
+        listItems={listItems}
         ></NewsList>
     )
 }
