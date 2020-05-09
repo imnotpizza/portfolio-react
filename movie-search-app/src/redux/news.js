@@ -73,7 +73,11 @@ export const fetchScrapItems = () => async dispatch => {
 
     } catch (e) {
         alert("failed");
-     
+        dispatch({
+            type: FETCH_SCRAPITEMS_SUCCESS,
+            payload: [],
+        });
+
     } finally {
 
         dispatch({ type: SET_ISLOADING, bool: false });//로딩 ui 비활성화
