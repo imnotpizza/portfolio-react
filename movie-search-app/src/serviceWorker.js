@@ -128,6 +128,7 @@ function checkValidServiceWorker(swUrl, config) {
     });
 }
 
+//서비스 워커 등록
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
