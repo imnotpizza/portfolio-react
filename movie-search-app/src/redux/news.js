@@ -72,7 +72,11 @@ export const fetchScrapItems = () => async dispatch => {
         });
 
     } catch (e) {
-        alert("failed");
+        alert("스크랩 목록을 호출하는 도중 문제가 발생했습니다.");
+        dispatch({
+            type: FETCH_SCRAPITEMS_SUCCESS,
+            payload: [],
+        });
      
     } finally {
 
@@ -80,7 +84,7 @@ export const fetchScrapItems = () => async dispatch => {
     }
 }
 
-//뉴스 검색결과 호출
+//뉴스 검색결과 호출 
 export const fetchNewsItems = (query, scrapItems) => async dispatch => {
     dispatch({ type: FETCH_NEWSITEMS, payload: [] });
 
@@ -97,7 +101,7 @@ export const fetchNewsItems = (query, scrapItems) => async dispatch => {
         dispatch({ type: SET_PAGENUM, num: 0 });
 
     } catch (e) {
-        alert("failed");
+        alert("검색 도중 문제가 발생했습니다.");
 
     } finally {
         dispatch({ type: SET_ISLOADING, bool: false });//로딩 ui 비활성화
@@ -253,6 +257,7 @@ const initialState = {
 
 //리듀서
 function news(state = initialState, action) {
+    console.log(action.type)
     switch (action.type) {
 
         case SET_QUERY: return {

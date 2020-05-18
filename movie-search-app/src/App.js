@@ -24,6 +24,7 @@ const App = () => {
 
   return (
     <>
+    
       {intro ? <Introduction></Introduction> : <HomeViewContainer></HomeViewContainer>}
      
     </>

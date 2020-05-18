@@ -47,8 +47,7 @@ $nav-font: 'Nanum-Gothic';
 
     &-input-button{
         display: flex;
-        align-content: center;
-        text-align: center;
+        justify-content: center;
 
         height: 40px;
         width: 100px;

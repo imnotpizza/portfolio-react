@@ -4,10 +4,8 @@ import NewsList from "./NewsList";
 import NewsListContainer from '../containers/NewsListContainer';
 import NewsSearchContainer from "../containers/NewsSearchContainer";
 import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
-import ClipLoader from "react-spinners/ClipLoader";
-import util from '../utils';
 import BgText from './BgText';
-import produce from 'immer';
+import ClipLoader from "react-spinners/ClipLoader";
 import "../sass/HomeView.scss";
 
 import { tempItems2 } from "../constants";
@@ -121,7 +119,7 @@ export const HomeView=({
   return (
       <InfiniteScroll
       dataLength={newsItems.length}
-      next={()=>{ console.log(newsItems); fetchMoreNews(query, pageNum, scrapItems, newsItems)}}
+      next={()=>{ fetchMoreNews(query, pageNum, scrapItems, newsItems)}}
       hasMore={shouldLoadMore()}
       scrollThreshold={0.9}
       >
@@ -149,16 +147,19 @@ export const HomeView=({
 
         
           {newsItems.length>0 && tabMode &&
-
-             <div align="center">
-                 <button 
-                   id="btn-load-additional" 
-                   onClick={fetchMoreNews}
-                   disabled={isMoreLoading}
-                   >
-                   {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
-                   </button>
-             </div>
+            <ClipLoader
+            size={50}
+            ></ClipLoader>
+       
+          //  <div align="center">
+          //      <button 
+          //        id="btn-load-additional" 
+          //        onClick={fetchMoreNews}
+          //        disabled={isMoreLoading}
+          //        >
+          //        {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
+          //        </button>
+          //  </div>
           
 
           }

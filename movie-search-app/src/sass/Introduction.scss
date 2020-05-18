@@ -9,9 +9,9 @@ $introbg: "https://myportfolio-resources.s3.ap-northeast-2.amazonaws.com/intro-b
     font-size: 80px;
     font-weight: bold;
     color: white;
-    position: absolute;
-    top: 30%;
-    left: 30%;
+    position: relative;
+    top: 25%;
+    left: 25%;
 }
 
 #intro-subtitle{
@@ -20,10 +20,21 @@ $introbg: "https://myportfolio-resources.s3.ap-northeast-2.amazonaws.com/intro-b
 
     font-size: 35px;
     color: white;
-    position: absolute;
-    top: 45%;
+    position: relative;
+    top: 30%;
     left: 30%;
 
+}
+
+#intro-update{
+    animation-name: anim-subtitle;
+    animation-duration: 4s;
+
+    font-size: 20px;
+    color: white;
+    position: relative;
+    top: 35%;
+    left: 30%;
 }
 
 #intro-background{
@@ -31,7 +42,7 @@ $introbg: "https://myportfolio-resources.s3.ap-northeast-2.amazonaws.com/intro-b
     animation-duration: 4s;
 
     width: 100%;
-    height: 80rem;
+    height: 57.5rem;
     background-color: #999999;
     background-image: 
         linear-gradient(to right, white 0%, #999999 100%), 
