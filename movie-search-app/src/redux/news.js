@@ -257,7 +257,6 @@ const initialState = {
 
 //리듀서
 function news(state = initialState, action) {
-    console.log(action.type)
     switch (action.type) {
 
         case SET_QUERY: return {

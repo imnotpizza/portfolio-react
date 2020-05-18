@@ -11,7 +11,7 @@ export default {
   get(path) {
     return axios.get(BASE_URL+path)
     .catch(err=>{
-      
+      console.log(Offline)
       if(!err.response){
         alert("현재 서버 점검중입니다. 나중에 다시 시도해주세요")
       }

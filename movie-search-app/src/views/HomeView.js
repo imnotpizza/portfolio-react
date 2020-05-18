@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsList from "./NewsList";
-import NewsListContainer from '../containers/NewsListContainer';
+//import NewsListContainer from '../containers/NewsListContainer';
 import NewsSearchContainer from "../containers/NewsSearchContainer";
-import {fetchNewsList, fetchScrapList, fetchAddScrap, fetchDeleteScrap} from '../apis/list';
 import BgText from './BgText';
-import ClipLoader from "react-spinners/ClipLoader";
+//import ClipLoader from "react-spinners/ClipLoader";
 import "../sass/HomeView.scss";
 
 import { tempItems2 } from "../constants";
+
+//Lazy Loading
+const ClipLoader =React.lazy(()=>import('react-spinners/ClipLoader'));
+const NewsListContainer=React.lazy(()=>import('../containers/NewsListContainer'));
+
 
 export const HomeView=({
   query, 
@@ -71,7 +75,13 @@ export const HomeView=({
       )
     }else{
       if(isLoading){
-        return  <BgText main={'검색중..'}></BgText>;
+        return (
+          <div>
+            <BgText
+            main={'검색 중..'}
+            ></BgText>
+          </div>
+        )
       }else{
 
         return (newsItems.length===0 ? (
@@ -83,9 +93,11 @@ export const HomeView=({
 
           ):(
           <div id="list-container">
-            <NewsListContainer
-            listItems={newsItems}
-            ></NewsListContainer>
+            <Suspense fallback={<div></div>}>
+              <NewsListContainer
+              listItems={newsItems}
+              ></NewsListContainer>
+            </Suspense>
           </div>
           )
       )
@@ -104,9 +116,11 @@ export const HomeView=({
     }else{
       return(
         <div id="list-container">
-        <NewsListContainer
-        listItems={scrapItems}
-        ></NewsListContainer>
+          <Suspense fallback={<div></div>}>
+            <NewsListContainer
+            listItems={scrapItems}
+            ></NewsListContainer>
+          </Suspense>
         </div>
       )
     }
@@ -147,19 +161,23 @@ export const HomeView=({
 
         
           {newsItems.length>0 && tabMode &&
-            <ClipLoader
-            size={50}
-            ></ClipLoader>
+        
        
-          //  <div align="center">
-          //      <button 
-          //        id="btn-load-additional" 
-          //        onClick={fetchMoreNews}
-          //        disabled={isMoreLoading}
-          //        >
-          //        {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
-          //        </button>
-          //  </div>
+          <div align="center">
+              <Suspense fallback={<div></div>}>
+                <ClipLoader
+                size={50}
+                ></ClipLoader>
+              </Suspense>
+              
+              {/* <button 
+                id="btn-load-additional" 
+                onClick={fetchMoreNews}
+                disabled={isMoreLoading}
+                >
+                {isMoreLoading ? '더 불러오는 중' : '결과 더보기'}
+                </button> */}
+          </div>
           
 
           }
